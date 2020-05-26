@@ -2,10 +2,11 @@
   "name": "sr_vscode_common",
   "version": "1.0.1",
   "description": "vscode common functions",
-  "main": "lib/vscode-common.js",
-  "types": "lib/vscode-common.d.ts",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "scripts": {
     "build": "tsc",
+    "prepublish": "npm run build",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "lint": "tslint -p tsconfig.json"
   },

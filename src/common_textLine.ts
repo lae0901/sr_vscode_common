@@ -1,29 +1,12 @@
 import * as vscode from 'vscode';
 
-// -------------------------- editor_selectionLine ------------------------
-// return the selection start TextLine of the active TextEditor.
-export function editor_selectionLine(editor?: vscode.TextEditor)
-{
-  let line: vscode.TextLine | undefined;
-  if (!editor)
-  {
-    editor = vscode.window.activeTextEditor;
-  }
-  if (editor)
-  {
-    const doc = editor.document;
-    line = doc.lineAt(editor.selection.start.line);
-  }
-  return line;
-}
-
 // --------------------- textLine_declareFunctionName ----------------------------
 // return func name that is declared on text line that contains function declare.
-export function textLine_declareFunctionName(line?: vscode.TextLine)
+export function textLine_declareFunctionName( line?: vscode.TextLine )
 {
-  let funcName: string = '';
+  let funcName : string = '' ;
 
-  if (line)
+  if ( line )
   {
     // look for function name in form "function funcName"
     {
@@ -36,7 +19,7 @@ export function textLine_declareFunctionName(line?: vscode.TextLine)
     }
 
     // look for function name in form funcName = function
-    if (!funcName)
+    if (!funcName )
     {
       const regexp = /(\w+)\s*=\s*function/;
       const matchArray = regexp.exec(line.text);
@@ -47,5 +30,5 @@ export function textLine_declareFunctionName(line?: vscode.TextLine)
     }
   }
 
-  return funcName;
+  return funcName ;
 }
