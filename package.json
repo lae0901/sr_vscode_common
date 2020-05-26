@@ -1,0 +1,37 @@
+{
+  "name": "sr_vscode_common",
+  "version": "1.0.1",
+  "description": "vscode common functions",
+  "main": "lib/vscode-common.js",
+  "types": "lib/vscode-common.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+    "lint": "tslint -p tsconfig.json"
+  },
+  "files": [
+    "/lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lae0901/sr_vscode_common.git"
+  },
+  "keywords": [],
+  "author": "Stephen Richter",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/lae0901/sr_vscode_common/issues"
+  },
+  "homepage": "https://github.com/lae0901/sr_vscode_common#readme",
+  "devDependencies": {
+    "@types/node": "^13.13.6",
+    "@types/vscode": "^1.45.0",
+    "prettier": "^1.19.1",
+    "tslint": "^6.1.2",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.9.2"
+  },
+  "dependencies": {
+    "sr_core_ts": "^1.23.2"
+  }
+}
