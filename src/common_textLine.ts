@@ -5,6 +5,7 @@ import * as vscode from 'vscode';
 export function textLine_declareFunctionName( line?: vscode.TextLine )
 {
   let funcName : string = '' ;
+  let protoName : string = '' ;
 
   if ( line )
   {
@@ -21,14 +22,15 @@ export function textLine_declareFunctionName( line?: vscode.TextLine )
     // look for function name in form funcName = function
     if (!funcName )
     {
-      const regexp = /(\w+)\s*=\s*function/;
+      const regexp = /((\w+)\.prototype\.)?(\w+)\s*=\s*function/;
       const matchArray = regexp.exec(line.text);
-      if (matchArray && matchArray.length >= 2)
+      if (matchArray && matchArray.length >= 4)
       {
-        funcName = matchArray[1];
+        protoName = matchArray[2];
+        funcName = matchArray[3];
       }
     }
   }
 
-  return funcName ;
+  return {funcName, protoName} ;
 }
