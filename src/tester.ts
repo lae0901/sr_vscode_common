@@ -2,6 +2,8 @@ import * as os from 'os';
 import * as fs from 'fs';
 import * as path from 'path';
 import {sqlText_createObjectName} from './sqlText' ;
+import { textLine_declareFunctionName } from './common_textLine';
+import { javascript_declareFunctionName } from './parse_javascript';
 
 // run main function that is declared as async. 
 async_main( ) ;
@@ -15,6 +17,20 @@ async function async_main( )
     for( const line of completion_arr )
     {
       console.log(line) ;
+    }
+
+    for (const line of errmsg_arr)
+    {
+      console.error(line);
+    }
+  }
+
+  // parse_javascript_test
+  {
+    const { errmsg_arr, completion_arr } = await parse_javascript_test();
+    for (const line of completion_arr)
+    {
+      console.log(line);
     }
 
     for (const line of errmsg_arr)
@@ -60,3 +76,35 @@ begin atomic    `;
 }
 
 
+// ---------------------------------- parse_javascript_test ----------------------------------
+async function parse_javascript_test()
+{
+  const errmsg_arr: string[] = [];
+  const completion_arr: string[] = [];
+  let method = '';
+
+  const textLine = `SrcmbrXref.readFolderContents = async function( dirPath:string)
+{
+	const folderContentsFilePath = path.join(dirPath, '.srcmbr-folderContents.json');
+	let { text, errmsg } = await file_readText( folderContentsFilePath ) ;
+	if ( !text )
+		text = '[]' ;
+	const folderContents = JSON.parse( text ) as iFolderContent[];
+	return folderContents ;
+}`;
+
+  // test the textLine_declareFunctionName function.
+  {
+    method = 'javascript_declareFunctionName';
+    const { funcName, protoName, isAsync } = javascript_declareFunctionName( textLine ) ;
+    if (( funcName != 'SrcmbrXref.readFolderContents') ||
+          ( isAsync != true ) || ( protoName.length > 0 ))
+    {
+      errmsg_arr.push(`${method} test failed. ${funcName} ${protoName} ${isAsync}`);
+    }
+    else
+      completion_arr.push(`${method}. passed. ${funcName} ${protoName} ${isAsync}`)
+  }
+
+  return { errmsg_arr, completion_arr };
+}
