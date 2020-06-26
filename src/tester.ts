@@ -211,5 +211,20 @@ async function javascript_declareInterfaceName_test()
     testResults_append(results, passText, errmsg, method );
   }
 
+  const textLine2 = `interface iLineMatchItem`;
+
+  // test the javascript_declareInterfaceName function.
+  {
+    method = 'javascript_declareInterfaceName ( interface name at end of string )';
+    const { interfaceName } = javascript_declareInterfaceName(textLine2);
+    if (!interfaceName)
+      errmsg = `interface name not found`;
+    else if (interfaceName != 'iLineMatchItem')
+      errmsg = `incorrect interface name ${interfaceName}`;
+    else
+      passText = `parsed interface name ${interfaceName}`;
+    testResults_append(results, passText, errmsg, method);
+  }
+
   return { results };
 }

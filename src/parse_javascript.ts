@@ -51,7 +51,7 @@ export function javascript_declareInterfaceName(text: string)
   {
     // look for interface name in form "interface interfaceName "
     {
-      const regexp = /(^|\s+)interface\s+(\w+)([\s{}])/;
+      const regexp = /(^|\s+)interface\s+(\w+)([\s{]|$)/;
       const matchArray = regexp.exec(text);
       if (matchArray && matchArray.length >= 4)
       {
