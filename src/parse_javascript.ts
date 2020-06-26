@@ -40,3 +40,25 @@ export function javascript_declareFunctionName( text: string )
   funcName = funcName || '' ;
   return { objectName, funcName, protoName, isAsync };
 }
+
+// --------------------- javascript_declareInterfaceName --------------------------
+// return name of interface declared on text line.
+export function javascript_declareInterfaceName(text: string)
+{
+  let interfaceName: string = '';
+
+  if (text)
+  {
+    // look for interface name in form "interface interfaceName "
+    {
+      const regexp = /(^|\s+)interface\s+(\w+)([\s{}])/;
+      const matchArray = regexp.exec(text);
+      if (matchArray && matchArray.length >= 4)
+      {
+        interfaceName = matchArray[2] || '';
+      }
+    }
+  }
+
+  return { interfaceName };
+}

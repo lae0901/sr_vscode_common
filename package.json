@@ -1,6 +1,6 @@
 {
   "name": "sr_vscode_common",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "vscode common functions",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -28,6 +28,7 @@
   "devDependencies": {
     "@types/node": "^13.13.12",
     "prettier": "^1.19.1",
+    "sr_test_framework": "^1.0.0",
     "tslint": "^6.1.2",
     "tslint-config-prettier": "^1.18.0",
     "typescript": "^3.9.5",

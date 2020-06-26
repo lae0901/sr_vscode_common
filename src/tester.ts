@@ -3,7 +3,8 @@ import * as fs from 'fs';
 import * as path from 'path';
 import {sqlText_createObjectName} from './sqlText' ;
 import { textLine_declareFunctionName } from './common_textLine';
-import { javascript_declareFunctionName } from './parse_javascript';
+import { javascript_declareFunctionName, javascript_declareInterfaceName } from './parse_javascript';
+import { testResults_append, testResults_consoleLog, testResults_new } from 'sr_test_framework';
 
 interface iTesterResults
 {
@@ -66,6 +67,11 @@ async function async_main( )
   {
     const { errmsg_arr, completion_arr } = await parse_javascript_test();
     testerResults_append( results, completion_arr, errmsg_arr ) ;
+  }
+
+  {
+    const { results } = await javascript_declareInterfaceName_test() ;
+    testResults_consoleLog(results) ;
   }
 
   // write tester results to console.
@@ -177,4 +183,33 @@ async function parse_javascript_test()
   }
 
   return { errmsg_arr, completion_arr };
+}
+
+// -------------------------- javascript_declareInterfaceName_test ----------------
+async function javascript_declareInterfaceName_test()
+{
+  let method = '';
+  const results = testResults_new() ;
+  let errmsg = '' ;
+  let passText = '' ;
+
+  const textLine = `
+  interface iLineMatchItem
+  {
+  howCompare : HowCompare,`;
+
+  // test the javascript_declareInterfaceName function.
+  {
+    method = 'javascript_declareInterfaceName';
+    const { interfaceName } = javascript_declareInterfaceName(textLine);
+    if ( !interfaceName ) 
+      errmsg = `interface name not found`;
+    else if ( interfaceName != 'iLineMatchItem')
+      errmsg = `incorrect interface name ${interfaceName}`;
+    else
+      passText = `parsed interface name ${interfaceName}`;
+    testResults_append(results, passText, errmsg, method );
+  }
+
+  return { results };
 }

@@ -9,6 +9,10 @@
 ## sql text functions
 * {objectType, objectName} = sqlText_createObjectName( sqlText )
 
+## parse javascript statement functions
+* {objectName, funcName, protoName, isAsync } = javascript_declareFunctionName( lineText: string)
+* { interfaceName } = javascript_declareInterfaceName( text: string )
+
 ## publish instructions
 * increment version number in package.json
 * make sure any new functions are imported and exported in index.ts
