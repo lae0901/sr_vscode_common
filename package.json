@@ -31,10 +31,10 @@
     "sr_test_framework": "^1.0.0",
     "tslint": "^6.1.2",
     "tslint-config-prettier": "^1.18.0",
-    "typescript": "^3.9.5",
+    "typescript": "^3.9.6",
     "vscode": "^1.1.37"
   },
   "dependencies": {
-    "sr_core_ts": "^1.46.11"
+    "sr_core_ts": "^1.46.14"
   }
 }
