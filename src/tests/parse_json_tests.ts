@@ -1,11 +1,8 @@
 import { testResults_append, testResults_consoleLog, testResults_new } from 'sr_test_framework';
-import { text_toLineXref } from '../common_text';
+import { json_parse } from '../parse_json';
 
-// ----------------------------- text_toLineXref_test -----------------------------
-export function text_toLineXref_test( )
-{
-  const results = testResults_new( ) ;
-  const doc_text = `{
+
+const doc_text = `{
   "ibmi-url": "http:\\192.168.1.170:10080",
   "library": "couri7",
   "srcFiles": ["qrpglesrc"],
@@ -29,9 +26,13 @@ export function text_toLineXref_test( )
     }
   ]
 }`
-  const method = 'text_toLineXref' ;
-  const xref_arr = text_toLineXref(doc_text ) ;
-  testResults_append( results, 'ok', '', method ) ;
 
+// -------------------------------- json_parse_test --------------------------------
+export function json_parse_test( )
+{
+  const results = testResults_new();
+  const method = 'json_parse';
+  json_parse( doc_text) ;
+  testResults_append(results, 'ok', '', method);
   return results ;
 }

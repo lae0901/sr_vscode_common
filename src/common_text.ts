@@ -14,8 +14,10 @@ export interface iDocumentLineXref
 // -------------------------------- text_toLineXref --------------------------------
 // split text stream into lines. Return array that locates start position of each
 // text line in the stream.
-export function text_toLineXref(text: string, eol: string): iDocumentLineXref[]
+export function text_toLineXref(text: string ): iDocumentLineXref[]
 {
+  // check text for eol string.
+  const eol = ( text.indexOf('\r\n') >= 0) ? '\r\n' : '\n';
   const lines = text.split(eol);
   let start = 0;
   let linn = 0;
