@@ -9,7 +9,7 @@
       "type": "node",
       "request": "launch",
       "name": "run tester",
-      "program": "${workspaceFolder}\\src\\tester.ts",
+      "program": "${workspaceFolder}\\src\\tests\\main.ts",
       "outFiles": [
         "${workspaceFolder}/lib/**/*.js"
       ]

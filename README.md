@@ -3,6 +3,9 @@
 ## editor functions
 * editor_selectionLine( editor?: vscode.TextEditor ) : vscode.TextLine
 
+## text functions
+* iDocumentLineXref[] = text_toLineXref( text, eol )
+
 ## textLine functions
 * textLine_declareFunctionName( line?: vscode.TextLine ) : string
 
