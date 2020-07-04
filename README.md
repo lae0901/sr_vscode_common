@@ -17,7 +17,7 @@
 * { interfaceName } = javascript_declareInterfaceName( text: string )
 
 ## parse json functions
-* {iJsonItem, iDocumentLineXref[]} = json_parse( text )
+* {root, lineXref} = editJson_parse( text )
 
 ## publish instructions
 * increment version number in package.json

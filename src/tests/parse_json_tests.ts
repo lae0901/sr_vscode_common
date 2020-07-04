@@ -1,5 +1,6 @@
-import { testResults_append, testResults_consoleLog, testResults_new } from 'sr_test_framework';
-import { json_parse } from '../parse_json';
+import { testResults_append, testResults_consoleLog, testResults_new, 
+          iTestResultItem } from 'sr_test_framework';
+import { editJson_parse } from '../parse_json';
 
 
 const doc_text = `{
@@ -28,11 +29,16 @@ const doc_text = `{
 }`
 
 // -------------------------------- json_parse_test --------------------------------
-export function json_parse_test( )
+export function json_parse_test( ) : iTestResultItem
 {
+  let passText = '' ;
+  let failText = '' ;
   const results = testResults_new();
-  const method = 'json_parse';
-  json_parse( doc_text) ;
-  testResults_append(results, 'ok', '', method);
-  return results ;
+  const method = 'editJson_parse';
+  const { root, lineXref } = editJson_parse( doc_text) ;
+  if (( root.itemType != 'object') || !root.obj || root.end != 397 )
+    failText = `incorrect results. itemType:${root.itemType} end:${root.end}`;
+  else 
+    passText = `correct results. itemType:${root.itemType} end:${root.end}`;
+  return {method, passText, failText } ;
 }

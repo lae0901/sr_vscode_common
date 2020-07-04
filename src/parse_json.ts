@@ -52,18 +52,26 @@ interface iJsonScalar
 // ------------------------------- iJsonParseResults -------------------------------
 export interface iJsonParseResults
 {
-  jsonItem: iJsonItem,
-  lineXref: iDocumentLineXref[]
+  // the root item of the json object
+  root: iJsonItem;   
+  
+  // provides index range of each line in text stream
+  lineXref: iDocumentLineXref[];  
 }
 
-// ---------------------------------- json_parse ----------------------------------
-export function json_parse( text: string ) : iJsonParseResults
+// ---------------------------------- editJson_parse ------------------------------
+// parse json text stream for the purpose of editing that text stream. Returns a 
+// parse tree that includes that start position of each item in the json stream. 
+// An xref data structure is also returned which provides the text stream position
+// range of each line in the stream. Using the two structures, a text editor can 
+// identify the linn location of each json item.
+export function editJson_parse( text: string ) : iJsonParseResults
 {
   const xref_array = text_toLineXref(text) ;
   let start = 0 ;
   const item = parseItem( text, start ) ;
 
-  return { jsonItem:item, lineXref:xref_array} ;
+  return { root:item, lineXref:xref_array} ;
 }
 
 // ---------------------------------- parseArray ----------------------------------

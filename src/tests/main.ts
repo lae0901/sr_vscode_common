@@ -8,12 +8,16 @@ main( ) ;
 
 export async function main()
 {
+  const results = testResults_new( ) ;
   {
-    const results = json_parse_test( ) ;
+    const item = json_parse_test( ) ;
+    results.push(item) ;
   }
 
   {
-    const results = text_toLineXref_test() ;
-    testResults_consoleLog(results);
+    const res = text_toLineXref_test() ;
+    results.push(...res) ;
   }
+
+  testResults_consoleLog(results);
 }
