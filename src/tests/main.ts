@@ -2,7 +2,7 @@
 
 import { text_toLineXref_test } from './editor_tests';
 import { testResults_append, testResults_consoleLog, testResults_new } from 'sr_test_framework';
-import { json_parse_test } from './parse_json_tests';
+import { json_parse_test,lineXref_findTextIndex_test } from './parse_json_tests';
 
 main( ) ;
 
@@ -12,6 +12,10 @@ export async function main()
   {
     const item = json_parse_test( ) ;
     results.push(item) ;
+  }
+  {
+    const item = lineXref_findTextIndex_test();
+    results.push(item);
   }
 
   {

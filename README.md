@@ -5,6 +5,7 @@
 
 ## text functions
 * iDocumentLineXref[] = text_toLineXref( text, eol )
+* iDocumentLineXref = lineXref_findTextIndex(  iDocumentLineXref[], index )
 
 ## textLine functions
 * textLine_declareFunctionName( line?: vscode.TextLine ) : string

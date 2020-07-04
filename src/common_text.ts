@@ -11,6 +11,18 @@ export interface iDocumentLineXref
   eol: string;
 }
 
+// ---------------------------- lineXref_findTextIndex ----------------------------
+// find the lineXref of the text line where the index in the text stream is located.
+export function lineXref_findTextIndex( arr: iDocumentLineXref[], index:number )
+{
+  const found_item = arr.find((item) =>
+  {
+    const end_index = item.start + item.text.length + item.eol.length - 1 ;
+    return( item.start <= index && index <= end_index);
+  });
+  return found_item ;
+}
+
 // -------------------------------- text_toLineXref --------------------------------
 // split text stream into lines. Return array that locates start position of each
 // text line in the stream.
