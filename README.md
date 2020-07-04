@@ -16,6 +16,9 @@
 * {objectName, funcName, protoName, isAsync } = javascript_declareFunctionName( lineText: string)
 * { interfaceName } = javascript_declareInterfaceName( text: string )
 
+## parse json functions
+* {iJsonItem, iDocumentLineXref[]} = json_parse( text )
+
 ## publish instructions
 * increment version number in package.json
 * make sure any new functions are imported and exported in index.ts
