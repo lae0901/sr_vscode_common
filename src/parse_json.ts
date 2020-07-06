@@ -3,9 +3,10 @@
 import { text_toLineXref } from './common_text';
 import { iDocumentLineXref } from '.';
 
-type jsonItemType = 'object' | 'array' | 'scalar' | '' ;
+export type jsonItemType = 'object' | 'array' | 'scalar' | '' ;
 
-interface iJsonItem
+// ----------------------------------- iJsonItem -----------------------------------
+export interface iJsonItem
 {
   start: number;
   end:number;
@@ -15,14 +16,16 @@ interface iJsonItem
   scalar?: iJsonScalar;
 }
 
-interface iJsonObject
+// ---------------------------------- iJsonObject ----------------------------------
+export interface iJsonObject
 {
   start: number;
   end: number;
-  properties: iObjectProperty[]
+  properties: iJsonObjectProperty[]
 }
 
-interface iObjectProperty
+// ------------------------------ iJsonObjectProperty ------------------------------
+export interface iJsonObjectProperty
 {
   start: number;
   end: number;
@@ -32,7 +35,8 @@ interface iObjectProperty
   errmsg?: string;
 }
 
-interface iJsonArray
+// ---------------------------------- iJsonArray ----------------------------------
+export interface iJsonArray
 {
   start: number;
   end: number;
@@ -40,7 +44,7 @@ interface iJsonArray
 }
 
 // ---------------------------------- iJsonScalar ----------------------------------
-interface iJsonScalar
+export interface iJsonScalar
 {
   start: number;
   text:string;
@@ -173,7 +177,7 @@ function parseObject( text: string, start: number) : iJsonObject
   let ix = start + 1 ;
   let end = -1 ;
   let errmsg = '' ;
-  const properties : iObjectProperty[] = [] ;
+  const properties : iJsonObjectProperty[] = [] ;
   while( !errmsg )
   {
     // advance past whitespace to start of property name or close brace.
@@ -221,7 +225,7 @@ function parseObject( text: string, start: number) : iJsonObject
 }
 
 // ---------------------------------- parseObjectProperty ----------------------------------
-function parseObjectProperty(text: string, start: number): iObjectProperty
+function parseObjectProperty(text: string, start: number): iJsonObjectProperty
 {
   let ix = start;
   let end = -1 ;

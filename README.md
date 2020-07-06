@@ -20,6 +20,14 @@
 ## parse json functions
 * {root, lineXref} = editJson_parse( text )
 
+## parse json interfaces
+* iJsonParseResults
+* iJsonArray
+* iJsonItem
+* iJsonObject
+* iJsonObjectProperty
+* iJsonScalar
+
 ## publish instructions
 * increment version number in package.json
 * make sure any new functions are imported and exported in index.ts

@@ -1,6 +1,6 @@
 {
   "name": "sr_vscode_common",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "vscode common functions",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
