@@ -6,12 +6,14 @@ import { iDocumentLineXref, text_toLineXref, lineXref_findTextIndex } from './co
 import { editJson_parse, iJsonParseResults,
           iJsonArray, iJsonItem, iJsonObject, iJsonObjectProperty,
           iJsonScalar } from './parse_json';
+import { jsonArray_toVlu, jsonObject_toVlu,jsonItem_toVlu, jsonScalar_toVlu } from './json_toVlu' ;
 
 export {
   editor_selectionLine,
   iDocumentLineXref, text_toLineXref, lineXref_findTextIndex,
   editJson_parse, iJsonParseResults, iJsonArray, iJsonItem, iJsonObject,
   iJsonObjectProperty, iJsonScalar,
+  jsonArray_toVlu, jsonObject_toVlu, jsonItem_toVlu, jsonScalar_toVlu,
   textLine_declareFunctionName,
   sqlText_createObjectName,
   javascript_declareFunctionName, javascript_declareInterfaceName

@@ -19,6 +19,10 @@
 
 ## parse json functions
 * {root, lineXref} = editJson_parse( text )
+* vlu = jsonArray_toVlu( iJsonArray )
+* vlu = jsonObject_toVlu( iJsonObject )
+* vlu = jsonItem_toVlu( iJsonItem )
+* vlu = jsonScalar_toVlu( iJsonScalar )
 
 ## parse json interfaces
 * iJsonParseResults

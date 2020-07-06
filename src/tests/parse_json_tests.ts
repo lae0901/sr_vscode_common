@@ -4,7 +4,7 @@ import { editJson_parse } from '../parse_json';
 import { lineXref_findTextIndex } from '../common_text';
 
 
-const doc_text = `{
+export const doc_text = `{
   "ibmi-url": "http:\\192.168.1.170:10080",
   "library": "couri7",
   "srcFiles": ["qrpglesrc"],
