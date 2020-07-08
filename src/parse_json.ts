@@ -97,10 +97,16 @@ function parseArray(text: string, start: number): iJsonArray
   while (!errmsg)
   {
     const item = parseItem(text, ix ) ;
-    items.push(item) ;
+
+    // something identified and parsed. store as item in array of items. 
+    // ( a ']' character will return as an empty item. )
+    if ( item.itemType )
+    {
+      items.push(item) ;
+      ix = item.end + 1;
+    }
 
     // advance past comma that follows the object property.
-    ix = item.end + 1;
     const rx = /(\s*)([,\]])/g;
     rx.lastIndex = ix;
     const rv = rx.exec(text);
@@ -129,7 +135,7 @@ function parseItem( text: string, ix: number ) : iJsonItem
 {
   // scan past whitespace to the start of the json value. Value is either an object
   // an array or a scalar. 
-  const re = /(\s*)([{\[\"\dtf\'])/g; 
+  const re = /(\s*)([{\[\"\dtf\'\]}])/g; 
   re.lastIndex = ix ;
   let fx = -1 ;
   const rv = re.exec(text) ;
@@ -158,6 +164,11 @@ function parseItem( text: string, ix: number ) : iJsonItem
       itemType = 'array' ;
       arr = parseArray( text, start ) ;
       end = arr.end ;
+    }
+    // end of the array or object that the item is located in. 
+    else if (( ch1 == ']') || ( ch1 == '}'))
+    {
+      itemType = '' ;
     }
     else
     {

@@ -3,7 +3,6 @@ import { testResults_append, testResults_consoleLog, testResults_new,
 import { editJson_parse } from '../parse_json';
 import { lineXref_findTextIndex } from '../common_text';
 
-
 export const doc_text = `{
   "ibmi-url": "http:\\192.168.1.170:10080",
   "library": "couri7",
@@ -29,6 +28,12 @@ export const doc_text = `{
   ]
 }`
 
+const doc_emptyArray = ` { "ibmi-url": "http:\\192.168.1.170:10080", 
+  "library": "couri7", 
+  "srcFiles": [ "STEVESRC", "qrpglesrc" ], 
+  "srcTypes": [ "SQLTBL", "SQLPRC" ], 
+  "members": [ ] } `;
+
 // -------------------------------- json_parse_test --------------------------------
 export function json_parse_test( ) : iTestResultItem
 {
@@ -42,6 +47,22 @@ export function json_parse_test( ) : iTestResultItem
   else 
     passText = `correct results. itemType:${root.itemType} end:${root.end}`;
   return {method, passText, failText } ;
+}
+
+// -------------------------------- json_parse_test_emptyArray --------------------------------
+export function json_parse_test_emptyArray(): iTestResultItem
+{
+  let passText = '';
+  let failText = '';
+  const results = testResults_new();
+  const method = 'editJson_parse_emptyArray';
+  const { root, lineXref } = editJson_parse( doc_emptyArray);
+  if ((root.itemType != 'object') || !root.obj || root.end != 169 ||
+        root.obj.properties.length != 5 )
+    failText = `incorrect results. itemType:${root.itemType} end:${root.end}`;
+  else
+    passText = `correct results. itemType:${root.itemType} end:${root.end}`;
+  return { method, passText, failText };
 }
 
 // --------------------------- lineXref_findTextIndex_test ------------------------
