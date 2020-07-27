@@ -4,6 +4,10 @@ import { text_toLineXref_test } from './editor_tests';
 import { testResults_append, testResults_consoleLog, testResults_new } from 'sr_test_framework';
 import { json_parse_test,lineXref_findTextIndex_test, json_parse_test_emptyArray } from './parse_json_tests';
 import { json_toVlu_tests } from './json_toVlu_tests';
+import { sqlCreateTable_test, sqlText_test, 
+          javascript_declareFunctionName_property_test, 
+          javascript_declareInterfaceName_test,  
+          parse_javascript_test} from '../tester';
 
 main( ) ;
 
@@ -32,6 +36,35 @@ export async function main()
   {
     const res = text_toLineXref_test() ;
     results.push(...res) ;
+  }
+
+  // sqlText_test
+  {
+    const { results: res } = await sqlText_test();
+    results.push(...res);
+  }
+
+  // sqlCreateTable_test
+  {
+    const { results: res } = await sqlCreateTable_test();
+    results.push(...res);
+  }
+
+  // parse_javascript_test
+  {
+    const { results: res } = await parse_javascript_test();
+    results.push(...res);
+  }
+
+  // javascript_declareFunctionName_property_test
+  {
+    const { results: res } = await javascript_declareFunctionName_property_test() ;
+    results.push(...res);
+  }
+
+  {
+    const { results: res } = await javascript_declareInterfaceName_test();
+    results.push(...res);
   }
 
   testResults_consoleLog(results);

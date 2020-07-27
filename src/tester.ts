@@ -4,7 +4,7 @@ import * as path from 'path';
 import {sqlText_createObjectName} from './sqlText' ;
 import { textLine_declareFunctionName } from './common_textLine';
 import { javascript_declareFunctionName, javascript_declareInterfaceName } from './parse_javascript';
-import { testResults_append, testResults_consoleLog, testResults_new } from 'sr_test_framework';
+import { testResults_append, testResults_consoleLog, testResults_new, iTestResultItem } from 'sr_test_framework';
 
 interface iTesterResults
 {
@@ -49,45 +49,44 @@ function testerResults_new( ) : iTesterResults
 // ------------------------------- async_main ---------------------------------
 async function async_main( )
 {
-  const results = testerResults_new( ) ;
+  const results = testResults_new();
 
   // sqlText_test
   {
-    const {completion_arr, errmsg_arr} = await sqlText_test() ;
-    testerResults_append( results, completion_arr, errmsg_arr );
+    const {results:res} = await sqlText_test() ;
+    results.push(...res);
   }
 
   // sqlCreateTable_test
   {
-    const { completion_arr, errmsg_arr } = await sqlCreateTable_test();
-    testerResults_append(results, completion_arr, errmsg_arr);
+    const { results:res } = await sqlCreateTable_test();
+    results.push(...res);
   }
 
   // parse_javascript_test
   {
-    const { errmsg_arr, completion_arr } = await parse_javascript_test();
-    testerResults_append( results, completion_arr, errmsg_arr ) ;
+    const { results: res } = await parse_javascript_test();
+    results.push(...res);
   }
 
   {
-    const { results } = await javascript_declareInterfaceName_test() ;
-    testResults_consoleLog(results) ;
+    const { results: res } = await javascript_declareInterfaceName_test() ;
+    results.push(...res);
   }
 
   // write tester results to console.
-  testerResults_consoleLog(results) ;
+  testResults_consoleLog(results) ;
 }
 
 // ---------------------------------- sqlText_test ----------------------------------
-async function sqlText_test( ) : Promise<iTesterResults>
+export async function sqlText_test( ) : Promise<{results:iTestResultItem[]}>
 {
-  const results = testerResults_new( ) ;
+  const results = testResults_new();
+  let errmsg = '';
+  let passText = '';
+  let method = '';
 
   {
-    const errmsg_arr : string[] = [] ;
-    const completion_arr : string[] = [] ;
-    let method = '' ;
-
     const stmtText = `-- comment text
     CREATE or replace FUNCTION ITMST_GetLatestDueDate(  
         inItno       char(27),                              
@@ -103,27 +102,28 @@ async function sqlText_test( ) : Promise<iTesterResults>
       const { objectType, objectName } = sqlText_createObjectName( stmtText );
       if ( objectType != 'function')
       {
-        errmsg_arr.push(`${method} test failed. ${objectType}`);
+        errmsg = `${method} test failed. ${objectType}`;
       }
       else if (objectName != 'ITMST_GetLatestDueDate')
       {
-        errmsg_arr.push(`${method} test failed. ${objectName}`);
+        errmsg = `${method} test failed. ${objectName}`;
       }
       else 
-        completion_arr.push(`${method}. passed. ${objectType} ${objectName}`)
+        passText = `${method}. passed. ${objectType} ${objectName}`;
     }
     
-    testerResults_append( results, completion_arr, errmsg_arr ) ;
+    testResults_append(results, passText, errmsg, method);
   }
 
-  return results ;
+  return {results} ;
 }
 
 // ---------------------------------- sqlCreateTable_test ----------------------------------
-async function sqlCreateTable_test(): Promise<iTesterResults>
+export async function sqlCreateTable_test(): Promise<{results:iTestResultItem[]}>
 {
-  const errmsg_arr: string[] = [];
-  const completion_arr: string[] = [];
+  const results = testResults_new();
+  let errmsg = '';
+  let passText = '';
   let method = '';
 
   const stmtText = `
@@ -139,24 +139,26 @@ async function sqlCreateTable_test(): Promise<iTesterResults>
     const { objectType, objectName, schemaName } = sqlText_createObjectName(stmtText);
     if (objectType != 'table')
     {
-      errmsg_arr.push(`${method} test failed. ${objectType}`);
+      errmsg = `${method} test failed. ${objectType}`;
     }
     else if ((objectName != 'itmstmo') || ( schemaName != 'aplusb1fcc'))
     {
-      errmsg_arr.push(`${method} test failed. ${schemaName}/${objectName}`);
+      errmsg = `${method} test failed. ${schemaName}/${objectName}`;
     }
     else
-      completion_arr.push(`${method}. passed. ${objectType} ${schemaName}/${objectName}`)
+      passText = `${method}. passed. ${objectType} ${schemaName}/${objectName}`;
+    testResults_append(results, passText, errmsg, method);
   }
 
-  return { completion_arr, errmsg_arr }
+  return { results }
 }
 
 // ---------------------------------- parse_javascript_test ----------------------------------
-async function parse_javascript_test()
+export async function parse_javascript_test()
 {
-  const errmsg_arr: string[] = [];
-  const completion_arr: string[] = [];
+  const results = testResults_new();
+  let errmsg = '';
+  let passText = '';
   let method = '';
 
   const textLine = `SrcmbrXref.readFolderContents = async function( dirPath:string)
@@ -176,17 +178,50 @@ async function parse_javascript_test()
     if ( (objectName != 'SrcmbrXref') || ( funcName != 'readFolderContents') ||
           ( isAsync != true ) || ( protoName.length > 0 ))
     {
-      errmsg_arr.push(`${method} test failed. ${objectName}.${funcName} ${protoName} ${isAsync}`);
+      errmsg = `${method} test failed. ${objectName}.${funcName} ${protoName} ${isAsync}`;
     }
     else
-      completion_arr.push(`${method}. passed. ${objectName}.${funcName} ${protoName} ${isAsync}`)
+      passText = `${method}. passed. ${objectName}.${funcName} ${protoName} ${isAsync}`;
+    testResults_append(results, passText, errmsg, method);
   }
 
-  return { errmsg_arr, completion_arr };
+  return { results };
+}
+
+// -------------------- javascript_declareFunctionName_property_test --------------
+export async function javascript_declareFunctionName_property_test()
+{
+  let method = '';
+  const results = testResults_new();
+  let errmsg = '';
+  let passText = '';
+
+  const textLine = `async expItem_addMeta(item, options, custName)
+  {
+    options = options || {};
+    item.add = options.add || false;
+    item.focusProp = options.focusProp || '';
+  }`;
+
+  // test the textLine_declareFunctionName function.
+  {
+    method = 'javascript_declareFunctionName';
+    const { objectName, funcName, protoName, isAsync } = javascript_declareFunctionName(textLine);
+    if ((funcName != 'expItem_addMeta') ||
+      (isAsync != true) || (protoName.length > 0))
+    {
+      errmsg = `${method} test failed. ${objectName}.${funcName} ${protoName} ${isAsync}`;
+    }
+    else
+      passText = `${method}. passed. ${objectName}.${funcName} ${protoName} ${isAsync}`;
+    testResults_append(results, passText, errmsg, method);
+  }
+
+  return { results };
 }
 
 // -------------------------- javascript_declareInterfaceName_test ----------------
-async function javascript_declareInterfaceName_test()
+export async function javascript_declareInterfaceName_test()
 {
   let method = '';
   const results = testResults_new() ;

@@ -7,6 +7,8 @@ export function javascript_declareFunctionName( text: string )
   let objectName: string = '';
   let protoName: string = '';
   let isAsync: boolean = false;
+  let openBrace: boolean = false ;
+  let form: 'funcDeclare'|'funcVariable'|'funcProperty'|'' = '' ;
 
   if (text)
   {
@@ -18,6 +20,7 @@ export function javascript_declareFunctionName( text: string )
       {
         isAsync = matchArray[2] ? true : false;
         funcName = matchArray[3];
+        form = 'funcDeclare';
       }
     }
 
@@ -32,13 +35,33 @@ export function javascript_declareFunctionName( text: string )
         objectName = matchArray[4] || '';
         funcName = matchArray[5];
         isAsync = matchArray[6] ? true : false;
+        form = 'funcVariable';
+      }
+    }
+
+    // look for function name in string with form " name( arg1, arg2 ) { ".  Where 
+    // the open brace follows the paren enclosed list of argments which is 
+    // preceeded by function name.
+    //     async expList_load( force )
+    // {
+    if (!funcName)
+    {
+      const regexp = /\s*(async\s+)?(\w+)\s*\((\w+)(,\s*\w+)*\)\s*({)/;
+      const matchArray = regexp.exec(text);
+      if (matchArray && matchArray.length >= 3)
+      {
+        isAsync = matchArray[1] ? true : false;
+        funcName = matchArray[2];
+        const arg1 = matchArray[3];
+        openBrace = matchArray[5] ? true : false;
+        form = 'funcProperty';
       }
     }
   }
 
   protoName = protoName || '' ;
   funcName = funcName || '' ;
-  return { objectName, funcName, protoName, isAsync };
+  return { form, objectName, funcName, protoName, isAsync };
 }
 
 // --------------------- javascript_declareInterfaceName --------------------------
