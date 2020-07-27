@@ -21,7 +21,7 @@ export function activeEditor_selectionLine( options?: {afterNumLines?: number} )
       linn += 1 ;
       if ( linn >= doc.lineCount )
         break ;
-      const line = doc.lineAt(linn + ix) ;
+      const line = doc.lineAt(linn) ;
       afterLines.push( line );
     }
   }
