@@ -196,25 +196,50 @@ export async function javascript_declareFunctionName_property_test()
   let errmsg = '';
   let passText = '';
 
-  const textLine = `async expItem_addMeta(item, options, custName)
   {
-    options = options || {};
-    item.add = options.add || false;
-    item.focusProp = options.focusProp || '';
-  }`;
-
-  // test the textLine_declareFunctionName function.
-  {
-    method = 'javascript_declareFunctionName';
-    const { objectName, funcName, protoName, isAsync } = javascript_declareFunctionName(textLine);
-    if ((funcName != 'expItem_addMeta') ||
-      (isAsync != true) || (protoName.length > 0))
+    const textLine = `async expItem_addMeta(item, options, custName)
     {
-      errmsg = `${method} test failed. ${objectName}.${funcName} ${protoName} ${isAsync}`;
+      options = options || {};
+      item.add = options.add || false;
+      item.focusProp = options.focusProp || '';
+    }`;
+
+    // test the textLine_declareFunctionName function.
+    {
+      method = 'javascript_declareFunctionName';
+      const { objectName, funcName, protoName, isAsync } = javascript_declareFunctionName(textLine);
+      if ((funcName != 'expItem_addMeta') ||
+        (isAsync != true) || (protoName.length > 0))
+      {
+        errmsg = `${method} test failed. ${objectName}.${funcName} ${protoName} ${isAsync}`;
+      }
+      else
+        passText = `${method}. passed. ${objectName}.${funcName} ${protoName} ${isAsync}`;
+      testResults_append(results, passText, errmsg, method);
     }
-    else
-      passText = `${method}. passed. ${objectName}.${funcName} ${protoName} ${isAsync}`;
-    testResults_append(results, passText, errmsg, method);
+  }
+
+  {
+    const textLine = `async expItem_addMeta( )
+    {
+      options = options || {};
+      item.add = options.add || false;
+      item.focusProp = options.focusProp || '';
+    }`;
+
+    // test the textLine_declareFunctionName function.
+    {
+      method = 'javascript_declareFunctionName';
+      const { objectName, funcName, protoName, isAsync } = javascript_declareFunctionName(textLine);
+      if ((funcName != 'expItem_addMeta') ||
+        (isAsync != true) || (protoName.length > 0))
+      {
+        errmsg = `${method} test failed. ${objectName}.${funcName} ${protoName} ${isAsync}`;
+      }
+      else
+        passText = `${method}. passed. ${objectName}.${funcName} ${protoName} ${isAsync}`;
+      testResults_append(results, passText, errmsg, method);
+    }
   }
 
   return { results };

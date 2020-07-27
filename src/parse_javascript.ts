@@ -46,7 +46,7 @@ export function javascript_declareFunctionName( text: string )
     // {
     if (!funcName)
     {
-      const regexp = /\s*(async\s+)?(\w+)\s*\((\w+)(,\s*\w+)*\)\s*({)/;
+      const regexp = /\s*(async\s+)?(\w+)\s*\((\w+)?(\s*,\s*\w+)*\s*\)\s*({)/;
       const matchArray = regexp.exec(text);
       if (matchArray && matchArray.length >= 3)
       {
