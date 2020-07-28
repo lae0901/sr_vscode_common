@@ -46,14 +46,14 @@ export function javascript_declareFunctionName( text: string )
     // {
     if (!funcName)
     {
-      const regexp = /\s*(async\s+)?(\w+)\s*\((\w+)?(\s*,\s*\w+)*\s*\)\s*({)/;
+      const regexp = /\s*(async\s+)?(\w+)\s*\((\w+)?((\s*,\s*\w+)*)\s*\)\s*({)/;
       const matchArray = regexp.exec(text);
       if (matchArray && matchArray.length >= 3)
       {
         isAsync = matchArray[1] ? true : false;
         funcName = matchArray[2];
         const arg1 = matchArray[3];
-        openBrace = matchArray[5] ? true : false;
+        openBrace = matchArray[6] ? true : false;
         form = 'funcProperty';
       }
     }
