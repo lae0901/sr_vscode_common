@@ -8,6 +8,7 @@ import { editJson_parse, iJsonParseResults,
           iJsonArray, iJsonItem, iJsonObject, iJsonObjectProperty,
           iJsonScalar } from './parse_json';
 import { jsonArray_toVlu, jsonObject_toVlu,jsonItem_toVlu, jsonScalar_toVlu } from './json_toVlu' ;
+import { rock_getServerUrl, rock_getServerUrlList } from './server-url';
 
 export {
   activeEditor_selectionLine, editor_selectionLine,
@@ -17,6 +18,7 @@ export {
   iJsonObjectProperty, iJsonScalar,
   jsonArray_toVlu, jsonObject_toVlu, jsonItem_toVlu, jsonScalar_toVlu,
   textLine_declareFunctionName,
+  rock_getServerUrl, rock_getServerUrlList,
   sqlText_createObjectName,
   javascript_declareFunctionName, javascript_declareInterfaceName
 } ;

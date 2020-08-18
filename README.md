@@ -32,6 +32,9 @@
 * iJsonObjectProperty
 * iJsonScalar
 
+## serverUrl functions
+* serverUrl = await rock_getServerUrl( )
+
 ## publish instructions
 * increment version number in package.json
 * make sure any new functions are imported and exported in index.ts
