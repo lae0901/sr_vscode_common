@@ -15,9 +15,11 @@ export function jsonArray_toVlu(jaar: iJsonArray)
 }
 
 // -------------------------------- jsonItem_toVlu --------------------------------
-export function jsonItem_toVlu(item: iJsonItem)
+export function jsonItem_toVlu(item?: iJsonItem) 
 {
-  if (item.scalar)
+  if ( !item )
+    return '' ;
+  else if (item.scalar)
     return jsonScalar_toVlu(item.scalar)
   else if ( item.arr )
     return jsonArray_toVlu(item.arr) ;
