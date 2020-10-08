@@ -9,7 +9,8 @@ import { editJson_parse, iJsonParseResults,
           iJsonScalar } from './parse_json';
 import { jsonArray_toVlu, jsonObject_toVlu,jsonItem_toVlu, jsonScalar_toVlu } from './json_toVlu' ;
 import { rock_getServerUrl, rock_getServerUrlList } from './server-url';
-import { iTrackRangeItem, trackRangeArray_push, trackRangeArray_applyDocumentChange } from './trackRange';
+import { iTrackRangeItem, trackRangeArray_push, trackRangeArray_applyDocumentChange,
+        trackRangeItem_update } from './trackRange';
 
 export {
   activeEditor_selectionLine, editor_selectionLine,
@@ -22,5 +23,6 @@ export {
   rock_getServerUrl, rock_getServerUrlList,
   sqlText_createObjectName,
   javascript_declareFunctionName, javascript_declareInterfaceName,
-  iTrackRangeItem, trackRangeArray_push, trackRangeArray_applyDocumentChange
+  iTrackRangeItem, trackRangeArray_push, trackRangeArray_applyDocumentChange,
+  trackRangeItem_update
 } ;
