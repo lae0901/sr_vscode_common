@@ -3,6 +3,11 @@
 ## editor functions
 * editor_selectionLine( editor?: vscode.TextEditor ) : vscode.TextLine
 
+## trackRange
+* iTrackRangeItem interface
+* trackRangeArray_push
+* trackRangeArray_applyDocumentChange
+
 ## text functions
 * iDocumentLineXref[] = text_toLineXref( text, eol )
 * iDocumentLineXref = lineXref_findTextIndex(  iDocumentLineXref[], index )

@@ -9,6 +9,7 @@ import { editJson_parse, iJsonParseResults,
           iJsonScalar } from './parse_json';
 import { jsonArray_toVlu, jsonObject_toVlu,jsonItem_toVlu, jsonScalar_toVlu } from './json_toVlu' ;
 import { rock_getServerUrl, rock_getServerUrlList } from './server-url';
+import { iTrackRangeItem, trackRangeArray_push, trackRangeArray_applyDocumentChange } from './trackRange';
 
 export {
   activeEditor_selectionLine, editor_selectionLine,
@@ -20,5 +21,6 @@ export {
   textLine_declareFunctionName,
   rock_getServerUrl, rock_getServerUrlList,
   sqlText_createObjectName,
-  javascript_declareFunctionName, javascript_declareInterfaceName
+  javascript_declareFunctionName, javascript_declareInterfaceName,
+  iTrackRangeItem, trackRangeArray_push, trackRangeArray_applyDocumentChange
 } ;
