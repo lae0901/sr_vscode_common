@@ -258,37 +258,34 @@ export async function javascript_declareInterfaceName_test()
   let errmsg = '' ;
   let passText = '' ;
 
-  const textLine = `
+  // test the javascript_declareInterfaceName function.
+  {
+    const textLine = `
   interface iLineMatchItem
   {
   howCompare : HowCompare,`;
-
-  // test the javascript_declareInterfaceName function.
-  {
     method = 'javascript_declareInterfaceName';
     const { interfaceName } = javascript_declareInterfaceName(textLine);
-    if ( !interfaceName ) 
-      errmsg = `interface name not found`;
-    else if ( interfaceName != 'iLineMatchItem')
-      errmsg = `incorrect interface name ${interfaceName}`;
-    else
-      passText = `parsed interface name ${interfaceName}`;
-    testResults_append(results, passText, errmsg, method );
+    const expected = 'iLineMatchItem' ;
+    const actual = interfaceName ;
+    const desc = 'declare interface name' ;
+    const aspect = '' ;
+    testResults_append(results, {method, expected, actual, desc, aspect } );
   }
 
-  const textLine2 = `interface iLineMatchItem`;
-
-  // test the javascript_declareInterfaceName function.
+  // declare exported interface.
   {
-    method = 'javascript_declareInterfaceName ( interface name at end of string )';
-    const { interfaceName } = javascript_declareInterfaceName(textLine2);
-    if (!interfaceName)
-      errmsg = `interface name not found`;
-    else if (interfaceName != 'iLineMatchItem')
-      errmsg = `incorrect interface name ${interfaceName}`;
-    else
-      passText = `parsed interface name ${interfaceName}`;
-    testResults_append(results, passText, errmsg, method);
+    const textLine = `
+  export interface iLineMatchItem
+  {
+  howCompare : HowCompare,`;
+    method = 'javascript_declareInterfaceName';
+    const { interfaceName } = javascript_declareInterfaceName(textLine);
+    const expected = 'iLineMatchItem';
+    const actual = interfaceName;
+    const desc = 'declare interface name';
+    const aspect = 'export';
+    testResults_append(results, { method, expected, actual, desc, aspect });
   }
 
   return { results };
