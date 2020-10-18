@@ -3,7 +3,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import {sqlText_createObjectName} from './sqlText' ;
 import { textLine_declareFunctionName } from './common_textLine';
-import { javascript_declareFunctionName, javascript_declareInterfaceName } from './parse_javascript';
+import { javascript_declareFunctionName, javascript_declareInterfaceName, javascript_declareTypeName } from './parse_javascript';
 import { testResults_append, testResults_consoleLog, testResults_new, iTestResultItem } from 'sr_test_framework';
 
 interface iTesterResults
@@ -71,6 +71,11 @@ async function async_main( )
 
   {
     const { results: res } = await javascript_declareInterfaceName_test() ;
+    results.push(...res);
+  }
+
+  {
+    const { results: res } = await javascript_declareTypeName_test();
     results.push(...res);
   }
 
@@ -284,6 +289,44 @@ export async function javascript_declareInterfaceName_test()
     else
       passText = `parsed interface name ${interfaceName}`;
     testResults_append(results, passText, errmsg, method);
+  }
+
+  return { results };
+}
+
+// -------------------------- javascript_declareTypeName_test ----------------
+export async function javascript_declareTypeName_test()
+{
+  let method = '';
+  const results = testResults_new();
+  let errmsg = '';
+  let passText = '';
+
+  // test the javascript_declareTypeName function.
+  {
+    const textLine = `
+  type SteveTaxCode = 'corp' || 'single' || 'llc' ;`
+  
+    method = 'javascript_declareTypeName';
+    const expected = 'SteveTaxCode' ;
+    const { typeName } = javascript_declareTypeName(textLine);
+    const actual = typeName ;
+    const desc = 'get type name from declare type statement' ;
+    testResults_append(results, {method, expected, actual, desc});
+  }
+
+  // test the javascript_declareTypeName function.
+  {
+    const textLine = ` export
+  type SteveTaxCode = 'corp' || 'single' || 'llc' ;`
+
+    method = 'javascript_declareTypeName';
+    const aspect = 'export the type';
+    const expected = 'SteveTaxCode';
+    const { typeName } = javascript_declareTypeName(textLine);
+    const actual = typeName;
+    const desc = 'get type name from declare type statement';
+    testResults_append(results, { method, expected, actual, desc, aspect });
   }
 
   return { results };

@@ -85,3 +85,27 @@ export function javascript_declareInterfaceName(text: string)
 
   return { interfaceName };
 }
+
+export type rpg_lineType = 'cspec' | 'dspec' | 'fspec' ;
+
+// --------------------- javascript_declareTypeName --------------------------
+// return name of interface declared on text line.
+export function javascript_declareTypeName(text: string)
+{
+  let typeName: string = '';
+
+  if (text)
+  {
+    // look for type name in form "type typeName = "
+    {
+      const regexp = /^\s*(export\s)?\s*type\s+(\w+)\s*=/;
+      const matchArray = regexp.exec(text);
+      if (matchArray && matchArray.length >= 3)
+      {
+        typeName = matchArray[2] || '';
+      }
+    }
+  }
+
+  return { typeName };
+}
