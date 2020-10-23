@@ -7,13 +7,13 @@ export function javascript_declareClassName(text: string)
 
   if (text)
   {
-    // look for class name in form "class className implements {"
+    // look for class name in form "export default class className implements {"
     {
-      const regexp = /^\s*(export\s)?\s*class\s+(\w+)/;
+      const regexp = /^\s*(export\s)?(default\s)?\s*class\s+(\w+)/;
       const matchArray = regexp.exec(text);
-      if (matchArray && matchArray.length >= 3)
+      if (matchArray && matchArray.length >= 4)
       {
-        className = matchArray[2] || '';
+        className = matchArray[3] || '';
       }
     }
   }

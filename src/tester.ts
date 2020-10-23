@@ -226,7 +226,7 @@ export async function javascript_declareClassName_test()
     testResults_append(results, { method, expected, actual, desc, aspect });
   }
 
-  // declare exported interface.
+  // declare export class.
   {
     const textLine = `
   export class SteveClass
@@ -238,6 +238,21 @@ export async function javascript_declareClassName_test()
     const actual = className;
     const desc = 'get declare class name';
     const aspect = 'export';
+    testResults_append(results, { method, expected, actual, desc, aspect });
+  }
+
+  // declare export default class.
+  {
+    const textLine = `
+  export default class SteveClass
+  {
+  howCompare : HowCompare,`;
+    method = 'javascript_declareClassName';
+    const { className } = javascript_declareClassName(textLine);
+    const expected = 'SteveClass';
+    const actual = className;
+    const desc = 'get declare default class name';
+    const aspect = 'default';
     testResults_append(results, { method, expected, actual, desc, aspect });
   }
 
