@@ -21,6 +21,8 @@
 ## parse javascript statement functions
 * {objectName, funcName, protoName, isAsync } = javascript_declareFunctionName( lineText: string)
 * { interfaceName } = javascript_declareInterfaceName( text: string )
+* { className } = javascript_declareClassName( text: string )
+* { methodName } = javascript_declareClassMethodName( text: string )
 
 ## parse json functions
 * {root, lineXref} = editJson_parse( text )

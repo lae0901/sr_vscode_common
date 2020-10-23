@@ -1,4 +1,48 @@
 
+// --------------------- javascript_declareClassName --------------------------
+// return name of interface declared on text line.
+export function javascript_declareClassName(text: string)
+{
+  let className: string = '';
+
+  if (text)
+  {
+    // look for class name in form "class className implements {"
+    {
+      const regexp = /^\s*(export\s)?\s*class\s+(\w+)/;
+      const matchArray = regexp.exec(text);
+      if (matchArray && matchArray.length >= 3)
+      {
+        className = matchArray[2] || '';
+      }
+    }
+  }
+
+  return { className };
+}
+
+// --------------------- javascript_declareClassMethodName --------------------------
+// return name of class method declared on text line.
+export function javascript_declareClassMethodName(text: string)
+{
+  let methodName: string = '';
+
+  if (text)
+  {
+    // look for class name in form "public|private methodName("
+    {
+      const regexp = /^\s*((public)|(private))\s+(\w+)\s*\(/;
+      const matchArray = regexp.exec(text);
+      if (matchArray && matchArray.length >= 5)
+      {
+        methodName = matchArray[4] || '';
+      }
+    }
+  }
+
+  return { methodName };
+}
+
 // --------------------- javascript_declareFunctionName ----------------------------
 // return func name that is declared on text line that contains function declare.
 export function javascript_declareFunctionName( text: string )

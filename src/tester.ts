@@ -3,7 +3,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import {sqlText_createObjectName} from './sqlText' ;
 import { textLine_declareFunctionName } from './common_textLine';
-import { javascript_declareFunctionName, javascript_declareInterfaceName, javascript_declareTypeName } from './parse_javascript';
+import { javascript_declareClassMethodName, javascript_declareClassName, javascript_declareFunctionName, javascript_declareInterfaceName, javascript_declareTypeName } from './parse_javascript';
 import { testResults_append, testResults_consoleLog, testResults_new, iTestResultItem } from 'sr_test_framework';
 
 interface iTesterResults
@@ -76,6 +76,16 @@ async function async_main( )
 
   {
     const { results: res } = await javascript_declareTypeName_test();
+    results.push(...res);
+  }
+
+  {
+    const { results: res } = await javascript_declareClassName_test();
+    results.push(...res);
+  }
+
+  {
+    const { results: res } = await javascript_declareClassMethodName_test();
     results.push(...res);
   }
 
@@ -188,6 +198,86 @@ export async function parse_javascript_test()
     else
       passText = `${method}. passed. ${objectName}.${funcName} ${protoName} ${isAsync}`;
     testResults_append(results, passText, errmsg, method);
+  }
+
+  return { results };
+}
+
+// -------------------------- javascript_declareClassName_test ----------------
+export async function javascript_declareClassName_test()
+{
+  let method = '';
+  const results = testResults_new();
+  let errmsg = '';
+  let passText = '';
+
+  // test the javascript_declareClassName function.
+  {
+    const textLine = `
+  class SteveClass
+  {
+  howCompare : HowCompare,`;
+    method = 'javascript_declareClassName';
+    const { className } = javascript_declareClassName(textLine);
+    const expected = 'SteveClass';
+    const actual = className;
+    const desc = 'get declare class name';
+    const aspect = '';
+    testResults_append(results, { method, expected, actual, desc, aspect });
+  }
+
+  // declare exported interface.
+  {
+    const textLine = `
+  export class SteveClass
+  {
+  howCompare : HowCompare,`;
+    method = 'javascript_declareClassName';
+    const { className } = javascript_declareClassName(textLine);
+    const expected = 'SteveClass';
+    const actual = className;
+    const desc = 'get declare class name';
+    const aspect = 'export';
+    testResults_append(results, { method, expected, actual, desc, aspect });
+  }
+
+  return { results };
+}
+
+// -------------------------- javascript_declareClassMethodName_test ----------------
+export async function javascript_declareClassMethodName_test()
+{
+  let method = '';
+  const results = testResults_new();
+  let errmsg = '';
+  let passText = '';
+
+  // test the javascript_declareClassMethodName function.
+  {
+    const textLine = `
+  public computeHover_Text (
+  howCompare : HowCompare,`;
+    method = 'javascript_declareClassMethodName';
+    const { methodName } = javascript_declareClassMethodName(textLine);
+    const expected = 'computeHover_Text';
+    const actual = methodName;
+    const desc = 'get method name';
+    const aspect = '';
+    testResults_append(results, { method, expected, actual, desc, aspect });
+  }
+
+  // test the javascript_declareClassMethodName function.
+  {
+    const textLine = `
+  private computeHover_Text (
+  howCompare : HowCompare,`;
+    method = 'javascript_declareClassMethodName';
+    const { methodName } = javascript_declareClassMethodName(textLine);
+    const expected = 'computeHover_Text';
+    const actual = methodName;
+    const desc = 'get method name';
+    const aspect = 'private';
+    testResults_append(results, { method, expected, actual, desc, aspect });
   }
 
   return { results };

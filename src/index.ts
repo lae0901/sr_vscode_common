@@ -2,7 +2,9 @@ import { editor_selectionLine, activeEditor_selectionLine } from './common_edito
 import { textLine_declareFunctionName } from './common_textLine';
 import { document_eol, document_lineEndPos } from './common_document';
 import { sqlText_createObjectName } from './sqlText'
-import { javascript_declareInterfaceName, javascript_declareTypeName, javascript_declareFunctionName} from './parse_javascript';
+import { javascript_declareInterfaceName, javascript_declareTypeName, 
+      javascript_declareFunctionName,
+      javascript_declareClassMethodName, javascript_declareClassName } from './parse_javascript';
 import { iDocumentLineXref, text_toLineXref, lineXref_findTextIndex } from './common_text';
 import { editJson_parse, iJsonParseResults,
           iJsonArray, iJsonItem, iJsonObject, iJsonObjectProperty,
@@ -23,6 +25,7 @@ export {
   rock_getServerUrl, rock_getServerUrlList,
   sqlText_createObjectName,
   javascript_declareFunctionName, javascript_declareInterfaceName, javascript_declareTypeName,
+  javascript_declareClassMethodName, javascript_declareClassName,
   iTrackRangeItem, trackRangeArray_push, trackRangeArray_applyDocumentChange,
   trackRangeItem_update
 } ;
