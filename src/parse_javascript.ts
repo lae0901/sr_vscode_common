@@ -1,4 +1,16 @@
 
+export class abc
+{
+
+  public static methodName(abc:string)
+  {
+
+  }
+
+}
+
+
+
 // --------------------- javascript_declareClassName --------------------------
 // return name of interface declared on text line.
 export function javascript_declareClassName(text: string)
@@ -29,9 +41,9 @@ export function javascript_declareClassMethodName(text: string)
 
   if (text)
   {
-    // look for class name in form "public|private methodName("
+    // look for class name in form "public|private static methodName("
     {
-      const regexp = /^\s*((public)|(private))\s+(\w+)\s*\(/;
+      const regexp = /^\s*((public)|(private))(?:\s*static)?\s+(\w+)\s*\(/;
       const matchArray = regexp.exec(text);
       if (matchArray && matchArray.length >= 5)
       {

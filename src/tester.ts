@@ -281,7 +281,7 @@ export async function javascript_declareClassMethodName_test()
     testResults_append(results, { method, expected, actual, desc, aspect });
   }
 
-  // test the javascript_declareClassMethodName function.
+  // private methodName (
   {
     const textLine = `
   private computeHover_Text (
@@ -292,6 +292,20 @@ export async function javascript_declareClassMethodName_test()
     const actual = methodName;
     const desc = 'get method name';
     const aspect = 'private';
+    testResults_append(results, { method, expected, actual, desc, aspect });
+  }
+
+  // public static methodName (
+  {
+    const textLine = `
+  public static computeHover_Text (
+  howCompare : HowCompare,`;
+    method = 'javascript_declareClassMethodName';
+    const { methodName } = javascript_declareClassMethodName(textLine);
+    const expected = 'computeHover_Text';
+    const actual = methodName;
+    const desc = 'get method name';
+    const aspect = 'static';
     testResults_append(results, { method, expected, actual, desc, aspect });
   }
 
