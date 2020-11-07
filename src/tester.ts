@@ -501,5 +501,27 @@ xxxxxxx`
     testResults_append(results, { method, expected, actual, desc });
   }
 
+  // jsdoc_parse function
+  {
+    const textLine = `
+/** 
+ * @textDesc ** Bill Of Lading for Federated (Roadway)
+ * @srcType  RPGLE
+ * @param lines array of text lines
+ * @srcmbr_fileName BillOfLading
+ */` ;
+    const text_arr = textLine.split('\n');
+    const method = 'jsdoc_parse';
+    const initialText = ``;
+    const expected = { startIx: 1, endIx: 5, numTags: 2, initialText };
+    const rv = jsdoc_parseNext(text_arr);
+    const actual = {
+      startIx: rv.startIx, endIx: rv.endIx,
+      initialText: rv.initialText, numTags: rv.tag_arr.length
+    };
+    const desc = 'parse jsdoc from array of text lines';
+    testResults_append(results, { method, expected, actual, desc });
+  }
+
   return { results };
 }
