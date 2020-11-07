@@ -13,6 +13,7 @@ import { jsonArray_toVlu, jsonObject_toVlu,jsonItem_toVlu, jsonScalar_toVlu } fr
 import { rock_getServerUrl, rock_getServerUrlList } from './server-url';
 import { iTrackRangeItem, trackRangeArray_push, trackRangeArray_applyDocumentChange,
         trackRangeItem_update } from './trackRange';
+import { jsdoc_isolateNext, jsdoc_parseNext } from './parse_jsdoc' ;
 
 export {
   activeEditor_selectionLine, editor_selectionLine,
@@ -27,5 +28,6 @@ export {
   javascript_declareFunctionName, javascript_declareInterfaceName, javascript_declareTypeName,
   javascript_declareClassMethodName, javascript_declareClassName,
   iTrackRangeItem, trackRangeArray_push, trackRangeArray_applyDocumentChange,
-  trackRangeItem_update
+  trackRangeItem_update,
+  jsdoc_isolateNext, jsdoc_parseNext
 } ;

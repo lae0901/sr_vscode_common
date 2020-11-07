@@ -12,7 +12,8 @@
       "program": "${workspaceFolder}\\src\\tests\\main.ts",
       "outFiles": [
         "${workspaceFolder}/lib/**/*.js"
-      ]
+      ],
+      "preLaunchTask": "npm: build"
     },
     
     {

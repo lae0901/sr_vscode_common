@@ -39,6 +39,10 @@
 * iJsonObjectProperty
 * iJsonScalar
 
+## parse jsdoc functions
+* {startIx, endIx, docLines } = jsdoc_isolateNext( lines: string[] )
+* {startIx, endIx, initialText, tag_arr } = jsdoc_parseNext( lines: string[] )
+
 ## serverUrl functions
 * serverUrl = await rock_getServerUrl( )
 
