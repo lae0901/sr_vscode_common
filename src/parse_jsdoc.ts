@@ -116,6 +116,7 @@ export function jsdoc_isolateNext(lines: string[], startIx:number = 0)
         if (match[1])
           docLines.push(match[1]);
       }
+      break ;
     }
 
     // this line is a jsdoc line.  remove the * from front of line. Then save to
