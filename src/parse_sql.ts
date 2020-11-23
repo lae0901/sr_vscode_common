@@ -46,14 +46,14 @@ export function javascript_declareClassMethodName(text: string)
 
 // --------------------- javascript_declareFunctionName ----------------------------
 // return func name that is declared on text line that contains function declare.
-export function javascript_declareFunctionName( text: string )
+export function javascript_declareFunctionName(text: string)
 {
   let funcName: string = '';
   let objectName: string = '';
   let protoName: string = '';
   let isAsync: boolean = false;
-  let openBrace: boolean = false ;
-  let form: 'funcDeclare'|'funcVariable'|'funcProperty'|'' = '' ;
+  let openBrace: boolean = false;
+  let form: 'funcDeclare' | 'funcVariable' | 'funcProperty' | '' = '';
 
   if (text)
   {
@@ -104,8 +104,8 @@ export function javascript_declareFunctionName( text: string )
     }
   }
 
-  protoName = protoName || '' ;
-  funcName = funcName || '' ;
+  protoName = protoName || '';
+  funcName = funcName || '';
   return { form, objectName, funcName, protoName, isAsync };
 }
 
