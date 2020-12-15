@@ -1,3 +1,4 @@
+import { iConnectSettings } from 'sr_ibmi_common';
 import * as vscode from 'vscode';
 
 export interface iServerUrlItem
@@ -7,15 +8,22 @@ export interface iServerUrlItem
   isDefault: boolean
 }
 
+// -------------------------- rock_getConnectSettings ----------------------------------------
+export async function rock_getConnectSettings()
+{
+  const connectSettings = (await vscode.commands.executeCommand('rock.getConnectSettings')) as iConnectSettings ;
+  return connectSettings ;
+}
+
 // -------------------------- rock_getServerUrl ----------------------------------------
 // the srsnip extension exposes commands: setServerUrl and getServerUrl.  The 
 // serverUrl is the url of the server accessed by all the autocoder commands and 
 // extensions.
 export async function rock_getServerUrl(): Promise<string>
 {
-  let serverUrl : string | undefined = await vscode.commands.executeCommand('rock.getServerUrl');
-  if ( !serverUrl )
-    serverUrl = '' ;
+  let serverUrl: string | undefined = await vscode.commands.executeCommand('rock.getServerUrl');
+  if (!serverUrl)
+    serverUrl = '';
   return serverUrl;
 }
 

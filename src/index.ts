@@ -10,7 +10,7 @@ import { editJson_parse, iJsonParseResults,
           iJsonArray, iJsonItem, iJsonObject, iJsonObjectProperty,
           iJsonScalar } from './parse_json';
 import { jsonArray_toVlu, jsonObject_toVlu,jsonItem_toVlu, jsonScalar_toVlu } from './json_toVlu' ;
-import { rock_getServerUrl, rock_getServerUrlList } from './server-url';
+import { rock_getConnectSettings, rock_getServerUrl, rock_getServerUrlList } from './server-url';
 import { iTrackRangeItem, trackRangeArray_push, trackRangeArray_applyDocumentChange,
         trackRangeItem_update } from './trackRange';
 
@@ -22,7 +22,7 @@ export {
   iJsonObjectProperty, iJsonScalar,
   jsonArray_toVlu, jsonObject_toVlu, jsonItem_toVlu, jsonScalar_toVlu,
   textLine_declareFunctionName,
-  rock_getServerUrl, rock_getServerUrlList,
+  rock_getConnectSettings, rock_getServerUrl, rock_getServerUrlList,
   sqlText_createObjectName,
   javascript_declareFunctionName, javascript_declareInterfaceName, javascript_declareTypeName,
   javascript_declareClassMethodName, javascript_declareClassName,

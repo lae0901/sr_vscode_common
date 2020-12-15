@@ -5,6 +5,7 @@ import {sqlText_createObjectName} from './sqlText' ;
 import { textLine_declareFunctionName } from './common_textLine';
 import { javascript_declareClassMethodName, javascript_declareClassName, javascript_declareFunctionName, javascript_declareInterfaceName, javascript_declareTypeName } from './parse_javascript';
 import { testResults_append, testResults_consoleLog, testResults_new, iTestResultItem } from 'sr_test_framework';
+import { rock_getConnectSettings } from './server-url';
 
 interface iTesterResults
 {
@@ -57,6 +58,12 @@ async function async_main( )
     results.push(...res);
   }
 
+  // getSettings_test
+  {
+    const res = await getSettings_test();
+    results.push(...res);
+  }
+
   // sqlCreateTable_test
   {
     const { results:res } = await sqlCreateTable_test();
@@ -91,6 +98,22 @@ async function async_main( )
 
   // write tester results to console.
   testResults_consoleLog(results) ;
+}
+
+// ------------------------------- getSettings_test -------------------------------
+async function getSettings_test()
+{
+  const results = testResults_new();
+
+  // getConnectSettings
+  {
+    const method = 'getConnectSettings' ;
+    const actual = rock_getConnectSettings() ;
+    const expected = { serverUrl:'xxxx'};
+    testResults_append( results, {method, actual, expected });
+  }
+
+  return results ;
 }
 
 // ---------------------------------- sqlText_test ----------------------------------
