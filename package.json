@@ -36,6 +36,6 @@
   },
   "dependencies": {
     "sr_core_ts": "^1.46.50",
-    "sr_ibmi_common": "1.0.31"
+    "sr_ibmi_common": "^1.0.40"
   }
 }
