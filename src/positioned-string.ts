@@ -1,14 +1,7 @@
 // src/common/positioned-string.ts
 
 import * as vscode from 'vscode';
-
-// ------------------------------- iPositionedString -------------------------------
-export interface iPositionedString
-{
-	text: string;
-	linn: number;
-	coln: number;
-}
+import { iPositionedString } from 'sr_ibmi_common' ;
 
 // --------------------------- positionedString_contains ---------------------------
 export function positionedString_contains( posstr: iPositionedString, pos: vscode.Position )

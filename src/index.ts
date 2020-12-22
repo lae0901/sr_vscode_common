@@ -13,8 +13,8 @@ import { jsonArray_toVlu, jsonObject_toVlu,jsonItem_toVlu, jsonScalar_toVlu } fr
 import { rock_getConnectSettings, rock_getServerUrl, rock_getServerUrlList } from './server-url';
 import { iTrackRangeItem, trackRangeArray_push, trackRangeArray_applyDocumentChange,
         trackRangeItem_update } from './trackRange';
-import { iDiagnosticMessage, diagnosticMessage_new, diagnosticMessage_toDiagnostic  } from './diagnostic-message' ;
-import { iPositionedString, positionedString_contains, positionedString_toRange } from './positioned-string';
+import { diagnosticMessage_new, diagnosticMessage_toDiagnostic  } from './diagnostic-message' ;
+import { positionedString_contains, positionedString_toRange } from './positioned-string';
 
 export {
   activeEditor_selectionLine, editor_selectionLine,
@@ -30,6 +30,6 @@ export {
   javascript_declareClassMethodName, javascript_declareClassName,
   iTrackRangeItem, trackRangeArray_push, trackRangeArray_applyDocumentChange,
   trackRangeItem_update,
-  iDiagnosticMessage, diagnosticMessage_new, diagnosticMessage_toDiagnostic,
-  iPositionedString, positionedString_contains, positionedString_toRange
+  diagnosticMessage_new, diagnosticMessage_toDiagnostic,
+  positionedString_contains, positionedString_toRange
 } ;

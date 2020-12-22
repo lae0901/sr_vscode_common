@@ -3,15 +3,9 @@
 // iDiagnosticeMessage interface is intended to encapsulate all info that the
 // stmt parser gathers when it finds an error.
 
+import { iDiagnosticMessage, iPositionedString } from 'sr_ibmi_common';
 import * as vscode from 'vscode';
-import { iPositionedString, positionedString_toRange } from './positioned-string';
-
-// ------------------------------ iDiagnosticMessage ------------------------------
-export interface iDiagnosticMessage
-{
-	textItem: iPositionedString;
-	message: string;
-}
+import { positionedString_toRange } from './positioned-string';
 
 // ----------------------------- diagnosticMessage_new -----------------------------
 export function diagnosticMessage_new( textItem: iPositionedString, message: string )
