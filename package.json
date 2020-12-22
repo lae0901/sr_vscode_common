@@ -1,6 +1,6 @@
 {
   "name": "sr_vscode_common",
-  "version": "1.1.22",
+  "version": "1.1.23",
   "description": "vscode common functions",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -35,7 +35,7 @@
     "vscode": "^1.1.37"
   },
   "dependencies": {
-    "sr_core_ts": "^1.46.50",
-    "sr_ibmi_common": "^1.0.40"
+    "sr_core_ts": "^1.46.53",
+    "sr_ibmi_common": "^1.0.46"
   }
 }
