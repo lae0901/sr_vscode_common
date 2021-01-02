@@ -8,25 +8,14 @@ export interface iServerUrlItem
   isDefault: boolean
 }
 
-// -------------------------- rock_getConnectSettings ----------------------------------------
-/**
- * return connection setting from global state of srsnip extension.
- * @deprecated use rock_currentConnectSetting instead. 
- */
-export async function rock_getConnectSettings()
-{
-  const connectSettings = (await vscode.commands.executeCommand('rock.getConnectSettings')) as iConnectSettings ;
-  return connectSettings ;
-}
-
-// -------------------------- rock_currentConnectSetting --------------------------
+// -------------------------- rock_currentConnectSettings --------------------------
 /**
  * return current ibm i connection setting. Connection settings include the URL of
  * ibm i, autocoder IFS product folder, product library, ...
  */
-export async function rock_currentConnectSetting()
+export async function rock_currentConnectSettings()
 {
-  const connectSettings = (await vscode.commands.executeCommand('rock.currentConnectSetting')) as iConnectSettings;
+  const connectSettings = (await vscode.commands.executeCommand('rock.currentConnectSettings')) as iConnectSettings;
   return connectSettings;
 }
 
