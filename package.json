@@ -1,6 +1,6 @@
 {
   "name": "sr_vscode_common",
-  "version": "1.1.25",
+  "version": "1.1.26",
   "description": "vscode common functions",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -26,7 +26,7 @@
   },
   "homepage": "https://github.com/lae0901/sr_vscode_common#readme",
   "devDependencies": {
-    "@types/node": "^13.13.36",
+    "@types/node": "^13.13.38",
     "@types/vscode": "^1.52.0",
     "prettier": "^1.19.1",
     "sr_test_framework": "^1.0.18",
@@ -36,6 +36,6 @@
   },
   "dependencies": {
     "sr_core_ts": "^1.46.53",
-    "sr_ibmi_common": "^1.0.47"
+    "sr_ibmi_common": "^1.0.50"
   }
 }
