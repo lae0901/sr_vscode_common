@@ -41,7 +41,7 @@
 
 ## serverUrl functions
 * serverUrl = await rock_getServerUrl( )
-* connectSettings = await rock_getConnectSettings( )
+* connectSetting = await rock_currentConnectSetting( )
 
 ## publish instructions
 * increment version number in package.json

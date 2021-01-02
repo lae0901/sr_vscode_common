@@ -10,11 +10,12 @@ import { editJson_parse, iJsonParseResults,
           iJsonArray, iJsonItem, iJsonObject, iJsonObjectProperty,
           iJsonScalar } from './parse_json';
 import { jsonArray_toVlu, jsonObject_toVlu,jsonItem_toVlu, jsonScalar_toVlu } from './json_toVlu' ;
-import { rock_getConnectSettings, rock_getServerUrl, rock_getServerUrlList } from './server-url';
 import { iTrackRangeItem, trackRangeArray_push, trackRangeArray_applyDocumentChange,
         trackRangeItem_update } from './trackRange';
 import { diagnosticMessage_new, diagnosticMessage_toDiagnostic  } from './diagnostic-message' ;
 import { positionedString_contains, positionedString_toRange } from './positioned-string';
+
+export * from './server-url';
 
 export {
   activeEditor_selectionLine, editor_selectionLine,
@@ -24,7 +25,6 @@ export {
   iJsonObjectProperty, iJsonScalar,
   jsonArray_toVlu, jsonObject_toVlu, jsonItem_toVlu, jsonScalar_toVlu,
   textLine_declareFunctionName,
-  rock_getConnectSettings, rock_getServerUrl, rock_getServerUrlList,
   sqlText_createObjectName,
   javascript_declareFunctionName, javascript_declareInterfaceName, javascript_declareTypeName,
   javascript_declareClassMethodName, javascript_declareClassName,

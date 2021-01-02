@@ -19,6 +19,17 @@ export async function rock_getConnectSettings()
   return connectSettings ;
 }
 
+// -------------------------- rock_currentConnectSetting --------------------------
+/**
+ * return current ibm i connection setting. Connection settings include the URL of
+ * ibm i, autocoder IFS product folder, product library, ...
+ */
+export async function rock_currentConnectSetting()
+{
+  const connectSettings = (await vscode.commands.executeCommand('rock.currentConnectSetting')) as iConnectSetting;
+  return connectSettings;
+}
+
 // -------------------------- rock_getServerUrl ----------------------------------------
 // the srsnip extension exposes commands: setServerUrl and getServerUrl.  The 
 // serverUrl is the url of the server accessed by all the autocoder commands and 
