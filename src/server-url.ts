@@ -1,4 +1,4 @@
-import { iConnectSetting } from 'sr_ibmi_common';
+import { iConnectSettings } from 'sr_ibmi_common';
 import * as vscode from 'vscode';
 
 export interface iServerUrlItem
@@ -15,7 +15,7 @@ export interface iServerUrlItem
  */
 export async function rock_getConnectSettings()
 {
-  const connectSettings = (await vscode.commands.executeCommand('rock.getConnectSettings')) as iConnectSetting ;
+  const connectSettings = (await vscode.commands.executeCommand('rock.getConnectSettings')) as iConnectSettings ;
   return connectSettings ;
 }
 
@@ -26,7 +26,7 @@ export async function rock_getConnectSettings()
  */
 export async function rock_currentConnectSetting()
 {
-  const connectSettings = (await vscode.commands.executeCommand('rock.currentConnectSetting')) as iConnectSetting;
+  const connectSettings = (await vscode.commands.executeCommand('rock.currentConnectSetting')) as iConnectSettings;
   return connectSettings;
 }
 
