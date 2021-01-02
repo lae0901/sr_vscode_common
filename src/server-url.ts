@@ -9,6 +9,10 @@ export interface iServerUrlItem
 }
 
 // -------------------------- rock_getConnectSettings ----------------------------------------
+/**
+ * return connection setting from global state of srsnip extension.
+ * @deprecated use rock_currentConnectSetting instead. 
+ */
 export async function rock_getConnectSettings()
 {
   const connectSettings = (await vscode.commands.executeCommand('rock.getConnectSettings')) as iConnectSetting ;
