@@ -24,7 +24,7 @@ export async function rock_currentConnectSettings()
  * return current ibm i connection setting. Connection settings include the URL of
  * ibm i, autocoder IFS product folder, product library, ...
  */
-export async function rock_getConnectSettings( connectName: string | undefined )
+export async function rock_getConnectSettings( connectName?: string | undefined )
 {
   const connectSettings = 
       (await vscode.commands.executeCommand('rock.getConnectSettings', connectName )) as iConnectSettings;
