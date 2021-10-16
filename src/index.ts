@@ -16,6 +16,7 @@ import { diagnosticMessage_new, diagnosticMessage_toDiagnostic  } from './diagno
 import { positionedString_contains, positionedString_toRange } from './positioned-string';
 
 export * from './server-url';
+export * from './parse/parse_c';
 
 export {
   activeEditor_selectionLine, editor_selectionLine,

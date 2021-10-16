@@ -46,6 +46,10 @@ export function javascript_declareClassMethodName(text: string)
 
 // --------------------- javascript_declareFunctionName ----------------------------
 // return func name that is declared on text line that contains function declare.
+// different ways in javascript to declare a function:
+// declare way:  function   getName( arg1 ) { body }
+// variable way: getName = function(arg1) { body }
+// property way: ?
 export function javascript_declareFunctionName( text: string )
 {
   let funcName: string = '';
@@ -53,6 +57,9 @@ export function javascript_declareFunctionName( text: string )
   let protoName: string = '';
   let isAsync: boolean = false;
   let openBrace: boolean = false ;
+
+  // the form of the function declaration. declared as a function, as a variable or
+  // as a property of an object.
   let form: 'funcDeclare'|'funcVariable'|'funcProperty'|'' = '' ;
 
   if (text)

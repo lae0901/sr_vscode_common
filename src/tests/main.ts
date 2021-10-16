@@ -7,7 +7,8 @@ import { json_toVlu_tests } from './json_toVlu_tests';
 import { sqlCreateTable_test, sqlText_test, 
           javascript_declareFunctionName_property_test, 
           javascript_declareInterfaceName_test,  
-          parse_javascript_test} from '../tester';
+          parse_javascript_test} from './tester';
+import { c_parse_test } from './parse_c_tests';
 
 main( ) ;
 
@@ -67,5 +68,11 @@ export async function main()
     results.push(...res);
   }
 
-  testResults_consoleLog(results);
+  // parse C code
+  {
+    const arr = c_parse_test( ) ;
+    results.push( ...arr ) ;
+  }
+
+  await testResults_consoleLog(results);
 }

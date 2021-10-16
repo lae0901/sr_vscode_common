@@ -1,10 +1,13 @@
 import * as os from 'os';
 import * as fs from 'fs';
 import * as path from 'path';
-import {sqlText_createObjectName} from './sqlText' ;
-import { textLine_declareFunctionName } from './common_textLine';
-import { javascript_declareClassMethodName, javascript_declareClassName, javascript_declareFunctionName, javascript_declareInterfaceName, javascript_declareTypeName } from './parse_javascript';
-import { testResults_append, testResults_consoleLog, testResults_new, iTestResultItem } from 'sr_test_framework';
+import {sqlText_createObjectName} from '../sqlText' ;
+import { textLine_declareFunctionName } from '../common_textLine';
+import { javascript_declareClassMethodName, javascript_declareClassName, 
+  javascript_declareFunctionName, javascript_declareInterfaceName, 
+  javascript_declareTypeName } from '../parse_javascript';
+import { testResults_append, testResults_consoleLog, testResults_new, 
+          iTestResultItem } from 'sr_test_framework';
 
 interface iTesterResults
 {
@@ -96,7 +99,7 @@ async function async_main( )
   }
 
   // write tester results to console.
-  testResults_consoleLog(results) ;
+  await testResults_consoleLog(results) ;
 }
 
 // // ------------------------------- getSettings_test -------------------------------
